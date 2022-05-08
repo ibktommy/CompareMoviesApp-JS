@@ -15,14 +15,21 @@ const fetchData = async (searchTerm) => {
 const searchInput = document.querySelector("input");
 
 // Function that gets called in the searchInput Event
-let timeOutId; /*Number Value assigned to setTimeout*/
-const onInput = (e) => {
-	if (timeOutId) {
-		clearTimeout(timeOutId);
-	}
-	timeOutId = setTimeout(() => {
-		fetchData(e.target.value);
-	}, 100);
+const debounce = (callback, delay) => {
+	/*Number Value assigned to setTimeout before its timeout seconds completes*/
+	let timeOutId;
+	return (...args) => {
+		if (timeOutId) {
+			clearTimeout(timeOutId);
+		}
+		timeOutId = setTimeout(() => {
+			callback.apply(null, args);
+		}, delay);
+	};
 };
 
-searchInput.addEventListener("input", onInput);
+const onInput = (e) => {
+	fetchData(e.target.value);
+};
+
+searchInput.addEventListener("input", debounce(onInput, 500));
