@@ -7,29 +7,28 @@ const fetchData = async (searchTerm) => {
 		},
 	});
 
-	console.log(response);
-	console.log(response.data);
+	if (response.data.Error) {
+		return [];
+	}
+
+	return response.data.Search;
 };
 
 //Selecting Input Field for Search Results that Fetches Movie Data
 const searchInput = document.querySelector("input");
 
-// Function that gets called in the searchInput Event
-const debounce = (callback, delay) => {
-	/*Number Value assigned to setTimeout before its timeout seconds completes*/
-	let timeOutId;
-	return (...args) => {
-		if (timeOutId) {
-			clearTimeout(timeOutId);
-		}
-		timeOutId = setTimeout(() => {
-			callback.apply(null, args);
-		}, delay);
-	};
+const onInput = async (e) => {
+	const movies = await fetchData(e.target.value);
+	console.log(movies);
+
+	for (let eachMovie of movies) {
+		const div = document.createElement("div");
+		div.innerHTML = `
+                      <img src="${eachMovie.Poster}"/>
+                      <h1>${eachMovie.Title}</h1>
+                    `;
+		document.querySelector("#target").appendChild(div);
+	}
 };
 
-const onInput = (e) => {
-	fetchData(e.target.value);
-};
-
-searchInput.addEventListener("input", debounce(onInput, 500));
+searchInput.addEventListener("input", debounce(onInput, 800));
