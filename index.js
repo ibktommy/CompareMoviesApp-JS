@@ -91,5 +91,25 @@ const movieSelected = async (movie) => {
 		},
 	});
 
-	console.log(response);
+	document.querySelector("#summary").innerHTML = movieDetails(response.data);
+};
+
+// Creating Dynamic HTML to display the data for the movieSelected
+const movieDetails = (movieData) => {
+	return `
+    <article class="media">
+      <figure class="media-left">
+        <p class="image">
+          <img src="${movieData.Poster}"/>
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <h1>${movieData.Title}</h1>
+          <h4>${movieData.Genre}</h4>
+          <p>${movieData.Plot}</p>
+        </div>
+      </div>
+    </article>
+  `;
 };
