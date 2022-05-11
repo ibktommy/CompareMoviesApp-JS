@@ -59,3 +59,11 @@ const onInput = async (e) => {
 };
 
 searchInput.addEventListener("input", debounce(onInput, 1000));
+
+// Closing the dropdown menu when we click anywhere on the document aside from the the "dataContainer"
+
+document.addEventListener("click", (event) => {
+	if (!dataContainer.contains(event.target)) {
+		dropdown.classList.remove("is-active");
+	}
+});
