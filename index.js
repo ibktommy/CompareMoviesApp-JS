@@ -36,6 +36,12 @@ const searchInput = document.querySelector("input");
 const onInput = async (e) => {
 	const movies = await fetchData(e.target.value);
 
+	// Clear dropdown menu if no movies are fetched
+	if (!movies.length) {
+		dropdown.classList.remove("is-active");
+		return;
+	}
+
 	// Clear existing Displayed Movie List
 	resultsWrapper.innerHTML = "";
 
