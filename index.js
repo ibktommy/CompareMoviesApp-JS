@@ -36,6 +36,9 @@ const searchInput = document.querySelector("input");
 const onInput = async (e) => {
 	const movies = await fetchData(e.target.value);
 
+	// Clear existing Displayed Movie List
+	resultsWrapper.innerHTML = "";
+
 	// Add class to display Menu Dropdown
 	dropdown.classList.add("is-active");
 
