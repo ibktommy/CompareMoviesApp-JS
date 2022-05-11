@@ -65,6 +65,7 @@ const onInput = async (e) => {
 		option.addEventListener("click", () => {
 			dropdown.classList.remove("is-active");
 			searchInput.value = eachMovie.Title;
+			movieSelected(eachMovie);
 		});
 
 		resultsWrapper.appendChild(option);
@@ -80,3 +81,15 @@ document.addEventListener("click", (event) => {
 		dropdown.classList.remove("is-active");
 	}
 });
+
+// Performing A request based on the movie option selected
+const movieSelected = async (movie) => {
+	const response = await axios.get("http://www.omdbapi.com/", {
+		params: {
+			apikey: "b75b860a",
+			i: movie.imdbID,
+		},
+	});
+
+	console.log(response);
+};
