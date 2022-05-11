@@ -46,9 +46,12 @@ const onInput = async (e) => {
 	for (let eachMovie of movies) {
 		const option = document.createElement("a");
 
+		// Fixing Broken Images in the API
+		const imgSrc = eachMovie.Poster === "N/A" ? "" : eachMovie.Poster;
+
 		option.classList.add("dropdown-item");
 		option.innerHTML = `
-      <img src="${eachMovie.Poster}"/>
+      <img src="${imgSrc}"/>
       ${eachMovie.Title}
     `;
 		resultsWrapper.appendChild(option);
