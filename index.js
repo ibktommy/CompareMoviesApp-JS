@@ -25,6 +25,9 @@ dataContainerConfig({
     ${eachMovie.Title} - (${eachMovie.Year})
   `;
 	},
+	onOptionSelect: (eachMovie) => {
+		movieSelected(eachMovie);
+	},
 });
 
 // Performing A request based on the movie option selected
@@ -69,7 +72,7 @@ const movieDetails = (movieData) => {
       <p class="subtitle">Metascore</p>
     </article>
     <article class="notification is-primary">
-      <p class='title'>${movieData.imdRating}</p>
+      <p class='title'>${movieData.imdbRating}</p>
       <p class="subtitle">IMDB Rating</p>
     </article>
     <article class="notification is-primary">
