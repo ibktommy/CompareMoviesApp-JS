@@ -1,4 +1,4 @@
-const dataContainerConfig = ({ rootElement }) => {
+const dataContainerConfig = ({ rootElement, renderOption }) => {
 	// Creating Dynamic HTML Elements Thats Displays The Fetched Data
 	rootElement.innerHTML = `
     <label><b>Search For a Movie</b></label>
@@ -35,14 +35,8 @@ const dataContainerConfig = ({ rootElement }) => {
 		for (let eachMovie of movies) {
 			const option = document.createElement("a");
 
-			// Fixing Broken Images in the API
-			const imgSrc = eachMovie.Poster === "N/A" ? "" : eachMovie.Poster;
-
 			option.classList.add("dropdown-item");
-			option.innerHTML = `
-      <img src="${imgSrc}"/>
-      ${eachMovie.Title}
-    `;
+			option.innerHTML = renderOption(eachMovie);
 
 			// Upating the "searchInput text value when we click on a particular movie option"
 			option.addEventListener("click", () => {

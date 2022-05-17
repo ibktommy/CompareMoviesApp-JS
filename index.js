@@ -17,12 +17,14 @@ const fetchData = async (searchTerm) => {
 
 dataContainerConfig({
 	rootElement: document.querySelector(".data-container"),
-});
-dataContainerConfig({
-	rootElement: document.querySelector(".data-containerTwo"),
-});
-dataContainerConfig({
-	rootElement: document.querySelector(".data-containerTri"),
+	renderOption: (eachMovie) => {
+		// Fixing Broken Images in the API
+		const imgSrc = eachMovie.Poster === "N/A" ? "" : eachMovie.Poster;
+		return `
+    <img src="${imgSrc}"/>
+    ${eachMovie.Title} - (${eachMovie.Year})
+  `;
+	},
 });
 
 // Performing A request based on the movie option selected
