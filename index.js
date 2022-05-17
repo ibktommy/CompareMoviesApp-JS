@@ -26,14 +26,8 @@ const dataConfigObject = {
   `;
 	},
 
-	onOptionSelect: (eachMovie) => {
-		// Hiding the "Search For A Movie" title bar
-		document.querySelector(".tutorial").classList.add("is-hidden");
-		movieSelected(eachMovie);
-	},
-
 	inputValue: (eachMovie) => {
-		return eachMovie.Title;
+		return `${eachMovie.Title} - (${eachMovie.Year})`;
 	},
 };
 
@@ -41,16 +35,26 @@ const dataConfigObject = {
 dataContainerConfig({
 	...dataConfigObject,
 	rootElement: document.querySelector("#left-data-container"),
+	onOptionSelect: (eachMovie) => {
+		// Hiding the "Search For A Movie" title bar
+		document.querySelector(".tutorial").classList.add("is-hidden");
+		movieSelected(eachMovie, document.querySelector("#left-details"));
+	},
 });
 
 // Spreading the dataConfigObject Properties and seleeting Right Data Container
 dataContainerConfig({
 	...dataConfigObject,
 	rootElement: document.querySelector("#right-data-container"),
+	onOptionSelect: (eachMovie) => {
+		// Hiding the "Search For A Movie" title bar
+		document.querySelector(".tutorial").classList.add("is-hidden");
+		movieSelected(eachMovie, document.querySelector("#right-details"));
+	},
 });
 
 // Performing A request based on the movie option selected
-const movieSelected = async (movie) => {
+const movieSelected = async (movie, movieDetailElement) => {
 	const response = await axios.get("http://www.omdbapi.com/", {
 		params: {
 			apikey: "b75b860a",
@@ -58,7 +62,7 @@ const movieSelected = async (movie) => {
 		},
 	});
 
-	document.querySelector("#summary").innerHTML = movieDetails(response.data);
+	movieDetailElement.innerHTML = movieDetails(response.data);
 };
 
 // Creating Dynamic HTML to display the data for the movieSelected
