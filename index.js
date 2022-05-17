@@ -1,22 +1,23 @@
-// Fetch Movie Data
-const fetchData = async (searchTerm) => {
-	const response = await axios.get("http://www.omdbapi.com/", {
-		params: {
-			apikey: "b75b860a",
-			s: searchTerm,
-		},
-	});
-
-	// Return empty array if "searchTerm" is not available in API server
-	if (response.data.Error) {
-		return [];
-	}
-
-	return response.data.Search;
-};
-
 dataContainerConfig({
 	rootElement: document.querySelector(".data-container"),
+
+	// Fetch Movie Data
+	fetchData: async (searchTerm) => {
+		const response = await axios.get("http://www.omdbapi.com/", {
+			params: {
+				apikey: "b75b860a",
+				s: searchTerm,
+			},
+		});
+
+		// Return empty array if "searchTerm" is not available in API server
+		if (response.data.Error) {
+			return [];
+		}
+
+		return response.data.Search;
+	},
+
 	renderOption: (eachMovie) => {
 		// Fixing Broken Images in the API
 		const imgSrc = eachMovie.Poster === "N/A" ? "" : eachMovie.Poster;
@@ -25,9 +26,11 @@ dataContainerConfig({
     ${eachMovie.Title} - (${eachMovie.Year})
   `;
 	},
+
 	onOptionSelect: (eachMovie) => {
 		movieSelected(eachMovie);
 	},
+
 	inputValue: (eachMovie) => {
 		return eachMovie.Title;
 	},

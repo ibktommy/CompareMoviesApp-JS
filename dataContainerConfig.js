@@ -1,4 +1,10 @@
-const dataContainerConfig = ({ rootElement, renderOption, onOptionSelect, inputValue }) => {
+const dataContainerConfig = ({
+	rootElement,
+	renderOption,
+	onOptionSelect,
+	inputValue,
+	fetchData,
+}) => {
 	// Creating Dynamic HTML Elements Thats Displays The Fetched Data
 	rootElement.innerHTML = `
     <label><b>Search For a Movie</b></label>
