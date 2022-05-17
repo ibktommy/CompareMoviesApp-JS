@@ -7,8 +7,8 @@ const dataContainerConfig = ({
 }) => {
 	// Creating Dynamic HTML Elements Thats Displays The Fetched Data
 	rootElement.innerHTML = `
-    <label><b>Search For a Movie</b></label>
-    <input class="input" type='search'/>
+    <label for="search"><b>Click to Search</b></label>
+    <input id="search" class="input" type='search'/>
     <div class='dropdown'>
       <div class= 'dropdown-menu'>
         <div class='dropdown-content results'></div>
