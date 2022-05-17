@@ -23,10 +23,10 @@ const dataContainerConfig = ({
 	const searchInput = rootElement.querySelector("input");
 
 	const onInput = async (e) => {
-		const movies = await fetchData(e.target.value);
+		const items = await fetchData(e.target.value);
 
 		// Clear dropdown menu if no movies are fetched
-		if (!movies.length) {
+		if (!items.length) {
 			dropdown.classList.remove("is-active");
 			return;
 		}
@@ -38,17 +38,17 @@ const dataContainerConfig = ({
 		dropdown.classList.add("is-active");
 
 		// Create Loop to run through Data Result
-		for (let eachMovie of movies) {
+		for (let eachItem of items) {
 			const option = document.createElement("a");
 
 			option.classList.add("dropdown-item");
-			option.innerHTML = renderOption(eachMovie);
+			option.innerHTML = renderOption(eachItem);
 
 			// Upating the "searchInput text value when we click on a particular movie option"
 			option.addEventListener("click", () => {
 				dropdown.classList.remove("is-active");
-				searchInput.value = inputValue(eachMovie);
-				onOptionSelect(eachMovie);
+				searchInput.value = inputValue(eachItem);
+				onOptionSelect(eachItem);
 			});
 
 			resultsWrapper.appendChild(option);
