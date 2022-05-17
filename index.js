@@ -1,6 +1,5 @@
-dataContainerConfig({
-	rootElement: document.querySelector(".data-container"),
-
+// Object that contains methods that perform a specific function in our App
+const dataConfigObject = {
 	// Fetch Movie Data
 	fetchData: async (searchTerm) => {
 		const response = await axios.get("http://www.omdbapi.com/", {
@@ -28,12 +27,26 @@ dataContainerConfig({
 	},
 
 	onOptionSelect: (eachMovie) => {
+		// Hiding the "Search For A Movie" title bar
+		document.querySelector(".tutorial").classList.add("is-hidden");
 		movieSelected(eachMovie);
 	},
 
 	inputValue: (eachMovie) => {
 		return eachMovie.Title;
 	},
+};
+
+// Spreading the dataConfigObject Properties and seleeting Left Data Container
+dataContainerConfig({
+	...dataConfigObject,
+	rootElement: document.querySelector("#left-data-container"),
+});
+
+// Spreading the dataConfigObject Properties and seleeting Right Data Container
+dataContainerConfig({
+	...dataConfigObject,
+	rootElement: document.querySelector("#right-data-container"),
 });
 
 // Performing A request based on the movie option selected
