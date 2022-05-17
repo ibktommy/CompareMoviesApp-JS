@@ -28,6 +28,9 @@ dataContainerConfig({
 	onOptionSelect: (eachMovie) => {
 		movieSelected(eachMovie);
 	},
+	inputValue: (eachMovie) => {
+		return eachMovie.Title;
+	},
 });
 
 // Performing A request based on the movie option selected

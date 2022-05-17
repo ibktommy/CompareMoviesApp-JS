@@ -1,4 +1,4 @@
-const dataContainerConfig = ({ rootElement, renderOption, onOptionSelect }) => {
+const dataContainerConfig = ({ rootElement, renderOption, onOptionSelect, inputValue }) => {
 	// Creating Dynamic HTML Elements Thats Displays The Fetched Data
 	rootElement.innerHTML = `
     <label><b>Search For a Movie</b></label>
@@ -41,7 +41,7 @@ const dataContainerConfig = ({ rootElement, renderOption, onOptionSelect }) => {
 			// Upating the "searchInput text value when we click on a particular movie option"
 			option.addEventListener("click", () => {
 				dropdown.classList.remove("is-active");
-				searchInput.value = eachMovie.Title;
+				searchInput.value = inputValue(eachMovie);
 				onOptionSelect(eachMovie);
 			});
 
