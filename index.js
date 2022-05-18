@@ -86,7 +86,23 @@ const movieSelected = async (movie, movieDetailElement, sideDetails) => {
 
 // Funtion to Compare both data fetched
 const runComparison = () => {
-	console.log("Run Comparison!");
+	const rightSideStats = document.querySelectorAll("#right-details .notification");
+	const leftSideStats = document.querySelectorAll("#left-details .notification");
+
+	leftSideStats.forEach((leftStat, index) => {
+		const rightStat = rightSideStats[index];
+
+		const rightSideValue = rightStat.dataset.value;
+		const leftSideValue = leftStat.dataset.value;
+
+		if (rightSideValue > leftSideValue) {
+			rightStat.classList.remove("is-primary");
+			rightStat.classList.add("is-warning");
+		} else {
+			leftStat.classList.remove("is-primary");
+			leftStat.classList.add("is-warning");
+		}
+	});
 };
 
 // Creating Dynamic HTML to display the data for the movieSelected
@@ -109,7 +125,6 @@ const movieDetails = (movieData) => {
 			return (prev += value);
 		}
 	}, 0);
-	console.log(awards);
 
 	return `
     <article class="media">
