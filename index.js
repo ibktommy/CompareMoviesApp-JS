@@ -17,6 +17,7 @@ const dataConfigObject = {
 		return response.data.Search;
 	},
 
+	// Rendering and Formatting of Movie Options Text and Images
 	renderOption: (eachMovie) => {
 		// Fixing Broken Images in the API
 		const imgSrc = eachMovie.Poster === "N/A" ? "" : eachMovie.Poster;
@@ -35,6 +36,8 @@ const dataConfigObject = {
 dataContainerConfig({
 	...dataConfigObject,
 	rootElement: document.querySelector("#left-data-container"),
+
+	// Actions Performed After Selecting A Movie Options
 	onOptionSelect: (eachMovie) => {
 		// Hiding the "Search For A Movie" title bar
 		document.querySelector(".tutorial").classList.add("is-hidden");
@@ -46,8 +49,10 @@ dataContainerConfig({
 dataContainerConfig({
 	...dataConfigObject,
 	rootElement: document.querySelector("#right-data-container"),
+
+	// Actions Performed After Selecting A Movie Options
 	onOptionSelect: (eachMovie) => {
-		// Hiding the "Search For A Movie" title bar
+		// Hiding the "Search For A Movie" title bar AFter Selecting A Movie Option
 		document.querySelector(".tutorial").classList.add("is-hidden");
 		movieSelected(eachMovie, document.querySelector("#right-details"));
 	},
