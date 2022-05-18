@@ -41,7 +41,7 @@ dataContainerConfig({
 	onOptionSelect: (eachMovie) => {
 		// Hiding the "Search For A Movie" title bar
 		document.querySelector(".tutorial").classList.add("is-hidden");
-		movieSelected(eachMovie, document.querySelector("#left-details"));
+		movieSelected(eachMovie, document.querySelector("#left-details"), "leftSide");
 	},
 });
 
@@ -54,12 +54,16 @@ dataContainerConfig({
 	onOptionSelect: (eachMovie) => {
 		// Hiding the "Search For A Movie" title bar AFter Selecting A Movie Option
 		document.querySelector(".tutorial").classList.add("is-hidden");
-		movieSelected(eachMovie, document.querySelector("#right-details"));
+		movieSelected(eachMovie, document.querySelector("#right-details"), "rightSide");
 	},
 });
 
+// Declaring variable for the side which Movie Details is Displayed
+let rightSideDetails;
+let leftSideDetails;
+
 // Performing A request based on the movie option selected
-const movieSelected = async (movie, movieDetailElement) => {
+const movieSelected = async (movie, movieDetailElement, sideDetails) => {
 	const response = await axios.get("http://www.omdbapi.com/", {
 		params: {
 			apikey: "b75b860a",
@@ -68,6 +72,13 @@ const movieSelected = async (movie, movieDetailElement) => {
 	});
 
 	movieDetailElement.innerHTML = movieDetails(response.data);
+
+	// Perfoming Condition to know what side we are displaying our data fetched
+	if (side === "rightSide") {
+		rightSideDetails === response.data;
+	} else {
+		leftSideDetails === response.data;
+	}
 };
 
 // Creating Dynamic HTML to display the data for the movieSelected
