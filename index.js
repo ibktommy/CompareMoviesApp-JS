@@ -75,10 +75,23 @@ const movieSelected = async (movie, movieDetailElement, sideDetails) => {
 
 	// Perfoming Condition to know what side we are displaying our data fetched
 	if (sideDetails === "rightSide") {
-		rightSideDetails === response.data;
+		rightSideDetails = response.data;
 	} else {
-		leftSideDetails === response.data;
+		leftSideDetails = response.data;
 	}
+
+	// Performing Condition to know if both sides have displayed data fetched
+	rightSideDetails && leftSideDetails ? runComparison() : null;
+	// if (rightSideDetails && leftSideDetails) {
+	// 	console.log("Hello");
+	// } else {
+	// 	console.log("Dont Hello");
+	// }
+};
+
+// Funtion to Compare both data fetched
+const runComparison = () => {
+	console.log("Run Comparison!");
 };
 
 // Creating Dynamic HTML to display the data for the movieSelected
