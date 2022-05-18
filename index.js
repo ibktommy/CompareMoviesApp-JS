@@ -92,13 +92,19 @@ const runComparison = () => {
 	leftSideStats.forEach((leftStat, index) => {
 		const rightStat = rightSideStats[index];
 
-		const rightSideValue = rightStat.dataset.value;
-		const leftSideValue = leftStat.dataset.value;
+		const rightSideValue = parseInt(rightStat.dataset.value);
+		const leftSideValue = parseInt(leftStat.dataset.value);
 
 		if (rightSideValue > leftSideValue) {
 			rightStat.classList.remove("is-primary");
 			rightStat.classList.add("is-warning");
+		} else if (rightSideValue < leftSideValue) {
+			leftStat.classList.remove("is-primary");
+			leftStat.classList.add("is-warning");
 		} else {
+			// If their values are the same
+			rightStat.classList.remove("is-primary");
+			rightStat.classList.add("is-warning");
 			leftStat.classList.remove("is-primary");
 			leftStat.classList.add("is-warning");
 		}
