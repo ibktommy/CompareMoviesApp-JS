@@ -126,23 +126,23 @@ const movieDetails = (movieData) => {
         </div>
       </div>
     </article>
-    <article class="notification is-primary">
+    <article data-value=${awards} class="notification is-primary">
       <p class='title'>${movieData.Awards}</p>
       <p class="subtitle">Awards</p>
     </article>
-    <article class="notification is-primary">
+    <article data-value=${boxOfficeValue} class="notification is-primary">
       <p class='title'>${movieData.BoxOffice}</p>
       <p class="subtitle">BoxOffice</p>
     </article>
-    <article class="notification is-primary">
+    <article data-value=${metaScore} class="notification is-primary">
       <p class='title'>${movieData.Metascore}</p>
       <p class="subtitle">Metascore</p>
     </article>
-    <article class="notification is-primary">
+    <article data-value=${imdbRating} class="notification is-primary">
       <p class='title'>${movieData.imdbRating}</p>
       <p class="subtitle">IMDB Rating</p>
     </article>
-    <article class="notification is-primary">
+    <article data-value=${imdbVotes} class="notification is-primary">
       <p class='title'>${movieData.imdbVotes}</p>
       <p class="subtitle">IMDB Votes</p>
     </article>
