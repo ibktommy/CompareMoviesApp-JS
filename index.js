@@ -92,10 +92,24 @@ const runComparison = () => {
 // Creating Dynamic HTML to display the data for the movieSelected
 const movieDetails = (movieData) => {
 	// Extracting Values that will be used for comparing Movies Option Selected
-	const boxOfficeValue = parseInt(movieDetails.BoxOffice.replace(/\$/g, "").replace(/,/g, ""));
-	const metascore = parseInt(movieDetails.Metascore);
-	const imdbRating = parseFloat(movieDetails.imdbRating);
-	const imdbVotes = parseInt(movieDetails.imdbVotes.replace(/,/g, ""));
+	const boxOfficeValue = parseInt(movieData.BoxOffice.replace(/\$/g, "").replace(/,/g, ""));
+	const metaScore = parseInt(movieData.Metascore);
+	const imdbRating = parseFloat(movieData.imdbRating);
+	const imdbVotes = parseInt(movieData.imdbVotes.replace(/,/g, ""));
+
+	// console.log(boxOfficeValue, metaScore, imdbRating, imdbVotes);
+
+	// Logic to get all number values in the MovieData.Awards so as to add it up
+	const awards = movieData.Awards.split(" ").reduce((prev, word) => {
+		const value = parseInt(word);
+
+		if (isNaN(value)) {
+			return prev;
+		} else {
+			return (prev += value);
+		}
+	}, 0);
+	console.log(awards);
 
 	return `
     <article class="media">
