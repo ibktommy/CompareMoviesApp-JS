@@ -74,7 +74,7 @@ const movieSelected = async (movie, movieDetailElement, sideDetails) => {
 	movieDetailElement.innerHTML = movieDetails(response.data);
 
 	// Perfoming Condition to know what side we are displaying our data fetched
-	if (side === "rightSide") {
+	if (sideDetails === "rightSide") {
 		rightSideDetails === response.data;
 	} else {
 		leftSideDetails === response.data;
