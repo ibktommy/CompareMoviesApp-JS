@@ -80,13 +80,8 @@ const movieSelected = async (movie, movieDetailElement, sideDetails) => {
 		leftSideDetails = response.data;
 	}
 
-	// Performing Condition to know if both sides have displayed data fetched
+	// Performing Condition to know if both sides have displayed data fetched USing Ternary Operator
 	rightSideDetails && leftSideDetails ? runComparison() : null;
-	// if (rightSideDetails && leftSideDetails) {
-	// 	console.log("Hello");
-	// } else {
-	// 	console.log("Dont Hello");
-	// }
 };
 
 // Funtion to Compare both data fetched
@@ -96,6 +91,12 @@ const runComparison = () => {
 
 // Creating Dynamic HTML to display the data for the movieSelected
 const movieDetails = (movieData) => {
+	// Extracting Values that will be used for comparing Movies Option Selected
+	const boxOfficeValue = parseInt(movieDetails.BoxOffice.replace(/\$/g, "").replace(/,/g, ""));
+	const metascore = parseInt(movieDetails.Metascore);
+	const imdbRating = parseFloat(movieDetails.imdbRating);
+	const imdbVotes = parseInt(movieDetails.imdbVotes.replace(/,/g, ""));
+
 	return `
     <article class="media">
       <figure class="media-left">
